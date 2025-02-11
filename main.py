@@ -11,31 +11,38 @@ explainer = CodeExplainer(token)
 
 # Example code to analyze
 sample_code = """
-class Calculator:
-    def add(self, a, b):
-        return a + b
+class Stack:
+    def __init__(self):
+        self.items = []
 
-    def subtract(self, a, b):
-        return a - b
+    def is_empty(self):
+        return len(self.items) == 0
 
-    def multiply(self, a, b):
-        return a * b
+    def push(self, item):
+        self.items.append(item)
 
-    def divide(self, a, b):
-        if b == 0:
-            raise ValueError("Cannot divide by zero")
-        return a / b
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Pop from an empty stack")
+        return self.items.pop()
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Peek from an empty stack")
+        return self.items[-1]
+
+    def size(self):
+        return len(self.items)
 
 def main():
-    calc = Calculator()
-    result = calc.add(10, 5)
-    print(f"Addition: {result}")
-    result = calc.subtract(10, 5)
-    print(f"Subtraction: {result}")
-    result = calc.multiply(10, 5)
-    print(f"Multiplication: {result}")
-    result = calc.divide(10, 5)
-    print(f"Division: {result}")
+    stack = Stack()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    print(f"Top item: {stack.peek()}")
+    print(f"Stack size: {stack.size()}")
+    print(f"Popped item: {stack.pop()}")
+    print(f"Stack size after pop: {stack.size()}")
 
 if __name__ == "__main__":
     main()
